@@ -1,3 +1,8 @@
+/* Import Swiper CSS */
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,15 +26,34 @@ body {
 }
 
 /* Custom Swiper Styles */
-.swiper-button-next,
+@layer components {
+  .swiper-button-next,
 .swiper-button-prev {
-  color: #50fa7b; /* Custom color for navigation buttons */
+  color: #50fa7b !important; /* Your neon green color */
+  width: 40px !important;
+  height: 40px !important;
+  margin: 0 10px !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 25px !important;
 }
 
 .swiper-pagination-bullet {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #50fa7b; /* Custom color for active bullet */
+  background-color: #50fa7b !important;
+}
+
+/* Add these new styles */
+.swiper-slide {
+  height: auto !important;
+}
+
+.swiper-wrapper {
+  padding-bottom: 40px !important;
+}
 }

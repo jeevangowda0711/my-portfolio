@@ -2,59 +2,60 @@
 
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import Particles from 'react-tsparticles';
 import { loadFull } from "tsparticles";
 import { Link } from 'react-scroll';
+import dynamic from 'next/dynamic';
+// Dynamically import Particles
+const Particles = dynamic(() => import('react-tsparticles'), { ssr: false });
+
 
 // Swiper imports
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import CardSlider from '../components/ui/CardSlider';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Navigation, Pagination } from 'swiper';
 
 import {
   Github, Linkedin, Mail, ExternalLink, Send
 } from 'lucide-react';
 
 import {
-  Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Badge, Tabs, TabsList, TabsTrigger, TabsContent, Input, Textarea, Progress,
-} from "../components/ui/ui-components"
+  Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Badge, Tabs, TabsList, TabsTrigger, TabsContent, Input, Textarea,} from "../components/ui/ui-components"
+
+import Skills from "../components/ui/Skills";
 
 // Experience and Projects Data
 const experiences = [
   {
     title: "Associate Product Manager",
     company: "Klimb.io",
-    dates: "Apr 2022 - Nov 2022",
+    dates: "May 2022 - November 2022",
     description: [
-      "Revamped dashboard interface, reducing user inquiries by 25%",
-      "Improved critical issue response time by 40%",
-      "Increased task completion rates by 15%"
+      "Revamped the dashboard and settings interface, resulting in a 25% decrease in user inquiries about platform navigation; streamlined user engagement processes, which improved response time by 15% across support teams.",
+      "Executed daily monitoring of website performance metrics, analyzing error logs and crash reports, which improved response times to critical issues by 40%, contributing to a more stable recruitment management system.",
+      "Conducted a weekly review of development team tasks, optimizing workflow and reallocating resources to high-priority items; this resulted in a 15% increase in task completion rates across the board."
     ],
     link: "https://www.klimb.io"
   },
   {
     title: "Associate Product Manager Intern",
     company: "Klimb.io",
-    dates: "Apr 2022 - Nov 2022",
+    dates: "March 2022 - May 2022",
     description: [
-      "Revamped dashboard interface, reducing user inquiries by 25%",
-      "Improved critical issue response time by 40%",
-      "Increased task completion rates by 15%"
+      "Led effective daily check-ins with developers to assess ongoing tasks and roadblocks, fostering a collaborative environment that empowered the team to resolve issues quickly and improve project momentum.",
+      "Implemented structured communication protocols during daily calls, contributing to a cohesive team environment; established regular updates to ensure all development activities are clearly tracked and reported."
     ],
     link: "https://www.klimb.io"
   },
   {
     title: "Celestial V Solutions",
     company: "Klimb.io",
-    dates: "Apr 2022 - Nov 2022",
+    dates: "December 2021 - January 2022",
     description: [
-      "Revamped dashboard interface, reducing user inquiries by 25%",
-      "Improved critical issue response time by 40%",
-      "Increased task completion rates by 15%"
+      "Developed a big data visualization system, improving decision-making efficiency by 15%."
     ],
-    link: "https://www.klimb.io"
+    link: "https://www.celestialv.com/"
   },
   // Add more experiences here
 ]
@@ -65,66 +66,52 @@ const projects = [
     description: "AI-Powered Accessibility Platform",
     details: "Enhanced accessibility and engagement by 40% through AI-powered navigation and media processing.",
     badges: ["Python", "FastAPI", "HuggingFace", "Tailwind CSS"],
-    link: "https://github.com/jeevangowda0711/visionary-mate"
+    link: "https://github.com/jeevangowda0711/Visionary_MATE"
   },
   {
-    title: "Mate",
+    title: "Resume Analyzer Job Matcher",
     description: "AI-Powered Accessibility Platform",
     details: "Enhanced accessibility and engagement by 40% through AI-powered navigation and media processing.",
     badges: ["Python", "FastAPI", "HuggingFace", "Tailwind CSS"],
-    link: "https://github.com/jeevangowda0711/visionary-mate"
+    link: "https://github.com/jeevangowda0711/resume-analyzer-job-matcher"
   },
   {
-    title: "Vis",
+    title: "Movie Rating Service",
     description: "AI-Powered Accessibility Platform",
     details: "Enhanced accessibility and engagement by 40% through AI-powered navigation and media processing.",
     badges: ["Python", "FastAPI", "HuggingFace", "Tailwind CSS"],
-    link: "https://github.com/jeevangowda0711/visionary-mate"
+    link: "https://github.com/jeevangowda0711/Movie-Rating-Service"
   },
   {
-    title: "Resume Analyzer",
+    title: "Movies Recommendation System",
     description: "AI-Powered Accessibility Platform",
     details: "Enhanced accessibility and engagement by 40% through AI-powered navigation and media processing.",
     badges: ["Python", "FastAPI", "HuggingFace", "Tailwind CSS"],
-    link: "https://github.com/jeevangowda0711/visionary-mate"
+    link: "https://github.com/jeevangowda0711/MoviesRecommendation"
   },
   // Add more projects here
 ]
 
 // Main Component
 export default function Component() {
-  const [activeSection, setActiveSection] = useState('hero')
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [activeSection, setActiveSection] = useState('hero');
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Initialize particle effect
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
   }, []);
 
-  // Form submission handler
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    setIsSubmitting(false)
-    setFormData({ name: '', email: '', message: '' })
-  }
-
-  // Skill levels
-  const skills = {
-    programming: ["Python", "JavaScript", "MySQL", "PostgreSQL", "HTML/CSS", "C"],
-    webDevelopment: ["Flask", "FastAPI", "Streamlit", "RESTful APIs", "JWT"],
-    dataScience: ["pandas", "NumPy", "polars", "Matplotlib", "seaborn", "BeautifulSoup", "plotly", "Collaborative Filtering", "HuggingFace", "Llama-Index"],
-    databasesCloud: ["PostgreSQL", "MySQL", "MongoDB", "Docker", "AWS", "GCP", "SQLAlchemy"],
-    tools: ["Git", "GitHub", "Jira", "Tableau", "Excel", "MS SQL", "VS Code", "Trello", "Slack"],
-    projectManagement: ["Agile", "User Stories", "Wireframes", "PRDs", "VAPT Reports"]
-  }
-  
+    e.preventDefault();
+    setIsSubmitting(true);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setIsSubmitting(false);
+    setFormData({ name: '', email: '', message: '' });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-background/95 text-gray-200">
-      
       {/* Particle Background */}
       <Particles
         id="tsparticles"
@@ -139,7 +126,6 @@ export default function Component() {
             move: { enable: true, speed: 4 },
           },
         }}
-        // className="absolute inset-0 -z-10"
       />
 
       {/* Navigation */}
@@ -191,11 +177,15 @@ export default function Component() {
               Aspiring Product Manager & Software Engineer
             </p>
             <div className="flex justify-center gap-4">
+            <Button asChild variant="default" size="lg">
               <Link to="projects" spy={true} smooth={true} offset={-70} duration={500}>
-                <Button variant="default" size="lg">Explore My Work</Button>
+                Explore My Work
               </Link>
-              <Button asChild={true} href="/resume.pdf" download variant="outline" size="lg">
-              Download Resume
+            </Button>
+              <Button asChild variant="outline" size="lg">
+                <a href="/resume.pdf" download>
+                   Download Resume
+                </a>
               </Button>
             </div>
             <div className="flex justify-center gap-4 pt-8">
@@ -231,96 +221,44 @@ export default function Component() {
       
       </section>
 
-      {/* Experience Section with Slider */}
-      <section id="experience" className="py-20 bg-background/50">
-        <div className="container px-4">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="space-y-12">
-            <h2 className="text-3xl font-bold tracking-tighter text-center text-neonGreen">Experience</h2>
-            <Swiper slidesPerView={1} spaceBetween={10} pagination={{ clickable: true }} navigation loop>
-              {experiences.map((exp, index) => (
-                <SwiperSlide key={index}>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>{exp.title}</CardTitle>
-                      <CardDescription>{exp.company} | {exp.dates}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="list-disc list-inside space-y-2 text-gray-400">
-                        {exp.description.map((desc, idx) => <li key={idx}>{desc}</li>)}
-                      </ul>
-                      <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-neonGreen mt-4 block">Learn more</a>
-                    </CardContent>
-                  </Card>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Projects Section with Slider */}
-      <section id="projects" className="py-20">
-        <div className="container px-4">
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="space-y-12">
-            <h2 className="text-3xl font-bold tracking-tighter text-center text-neonGreen">Featured Projects</h2>
-            <Swiper slidesPerView={1} spaceBetween={10} pagination={{ clickable: true }} navigation loop>
-              {projects.map((proj, index) => (
-                <SwiperSlide key={index}>
-                  <Card className="group hover:shadow-lg transition-all">
-                    <CardHeader>
-                      <CardTitle className="flex items-center justify-between">
-                        {proj.title}
-                        <a href={proj.link} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="h-4 w-4 text-neonGreen" />
-                        </a>
-                      </CardTitle>
-                      <CardDescription>{proj.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-400 mb-4">{proj.details}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {proj.badges.map((badge, idx) => <Badge key={idx}>{badge}</Badge>)}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-<section id="skills" className="py-20 bg-background/50">
+      {/* Experience Section */}
+<section id="experience" className="py-20 bg-background/50">
   <div className="container px-4">
-    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="space-y-12">
-      <h2 className="text-3xl font-bold tracking-tighter text-center text-neonGreen">Skills</h2>
-      <Tabs defaultValue="programming" className="w-full">
-        {/* Skill Category Tabs */}
-        <TabsList className="grid w-full md:w-auto md:inline-grid grid-cols-2 md:grid-cols-5">
-          <TabsTrigger value="programming">Programming</TabsTrigger>
-          <TabsTrigger value="webDevelopment">Web Development</TabsTrigger>
-          <TabsTrigger value="dataScience">Data Science</TabsTrigger>
-          <TabsTrigger value="tools">Tools</TabsTrigger>
-          <TabsTrigger value="projectManagement">Product Mangement</TabsTrigger>
-        </TabsList>
-        
-        {/* Display Sub-Skills as Symbols in Each Tab */}
-        {Object.entries(skills).map(([category, skillList]) => (
-          <TabsContent key={category} value={category} className="mt-6">
-            <div className="flex flex-wrap gap-4">
-              {skillList.map((skill, index) => (
-                <Badge key={index} className="bg-gray-800 text-neonGreen px-4 py-2 rounded-md">
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </TabsContent>
-        ))}
-      </Tabs>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="space-y-12"
+    >
+      <h2 className="text-3xl font-bold tracking-tighter text-center text-neonGreen">Experience</h2>
+      <CardSlider items={experiences} type="experience" />
     </motion.div>
   </div>
 </section>
+
+
+{/* Projects Section */}
+<section id="projects" className="py-20">
+  <div className="container px-4">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="space-y-12"
+    >
+      <h2 className="text-3xl font-bold tracking-tighter text-center text-neonGreen">Featured Projects</h2>
+      <CardSlider items={projects} type="projects" />
+    </motion.div>
+  </div>
+</section>
+
+
+
+
+       {/* Skills Section */}
+       <section id="skills" className="py-20 bg-background/50">
+        <Skills />
+       </section>
 
 
       {/* Contact Section */}
@@ -356,5 +294,5 @@ export default function Component() {
         </div>
       </section>
     </div>
-  )
+  );
 }

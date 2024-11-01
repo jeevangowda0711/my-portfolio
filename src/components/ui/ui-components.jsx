@@ -28,15 +28,14 @@ const buttonVariants = cva(
   }
 );
 
-const Button = React.forwardRef(({ className, variant, size, asChild = false, href, download, ...props }, ref) => {
-  const Comp = asChild ? "a" : "button"; // Render as <a> if asChild is true
+const Button = React.forwardRef(({ className, variant, size, asChild = false, ...props }, ref) => {
+  const Comp = asChild ? Slot : 'button';
   
   return (
     <Comp
       className={buttonVariants({ variant, size, className })}
       ref={ref}
       {...props}
-      {...(asChild ? { href, download } : {})}  // Conditionally pass href and download attributes
     />
   );
 });
