@@ -10,18 +10,16 @@ const Particles = dynamic(() => import('react-tsparticles'), { ssr: false });
 
 
 // Swiper imports
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import CardSlider from '../components/ui/CardSlider';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import {
-  Github, Linkedin, Mail, ExternalLink, Send
-} from 'lucide-react';
+  Github, Linkedin, Mail } from 'lucide-react';
 
 import {
-  Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Badge, Tabs, TabsList, TabsTrigger, TabsContent, Input, Textarea,} from "../components/ui/ui-components"
+  Button, Card, CardContent, Input, Textarea,} from "../components/ui/ui-components"
 
 import Skills from "../components/ui/Skills";
 
@@ -267,7 +265,7 @@ export default function Component() {
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="max-w-md mx-auto space-y-8">
             <div className="text-center space-y-4">
               <h2 className="text-3xl font-bold tracking-tighter text-neonGreen">Get In Touch</h2>
-              <p className="text-gray-400">I'm currently looking for new opportunities. Feel free to reach out!</p>
+              <p className="text-gray-400">I&apos;m currently looking for new opportunities. Feel free to reach out!</p>
             </div>
             <Card>
               <CardContent className="pt-6">

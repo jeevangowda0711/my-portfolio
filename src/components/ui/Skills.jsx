@@ -6,7 +6,6 @@ import {
   FaJsSquare,
   FaDatabase,
   FaHtml5,
-  FaCss3,
   FaDocker,
   FaAws,
   FaGit,
