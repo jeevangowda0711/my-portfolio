@@ -63,7 +63,7 @@ const experiences = [
 const projects = [
   {
     title: "Visionary Mate",
-    description: "AI-Powered Accessibility Platform",
+    description: "AI-Powered Accessibility Assistance & Multimodal Interaction Platform Platform",
     details: "Enhanced accessibility and engagement by 40% through AI-powered navigation and media processing.",
     badges: ["Python", "FastAPI", "HuggingFace", "Tailwind CSS"],
     link: "https://github.com/jeevangowda0711/Visionary_MATE"
