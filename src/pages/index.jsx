@@ -139,10 +139,10 @@ export default function Component() {
           particles: {
             number: { value: 50 },
             color: { value: "#50fa7b" },
-            shape: { type: "square" },
-            opacity: { value: 0.5 },
+            shape: { type: ["circle", "triangle", "star", "square", "polygon"] },
+            opacity: { value: 0.7 },
             size: { value: 10 },
-            move: { enable: true, speed: 4 },
+            move: { enable: true, speed: 2 },
           },
         }}
       />

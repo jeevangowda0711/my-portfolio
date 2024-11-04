@@ -115,12 +115,12 @@ const skillsData = {
 };
 
 function Skills() {
-  const [selectedTab, setSelectedTab] = useState("programming");
+  const [selectedTab, setSelectedTab] = useState("productManagement");
 
   return (
     <div className="skills-section">
       <h2 className="text-3xl font-bold tracking-tighter text-center text-neonGreen">Skills</h2>
-      <Tabs defaultValue="programming" className="mt-6">
+      <Tabs defaultValue="productManagement" className="mt-6">
         <TabsList className="flex flex-wrap justify-center">
           {Object.keys(skillsData).map((category) => (
             <TabsTrigger

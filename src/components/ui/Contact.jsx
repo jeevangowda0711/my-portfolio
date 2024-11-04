@@ -21,14 +21,14 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/submit-form', {
+      const response = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString(),
       });
 
       if (response.ok) {
-        setFormData({ name: '', email: '', message: '', 'bot-field': '' });
+        setFormData({ name: '', email: '', message: '', 'bot-field': '' }); // Clear the form
         setIsSuccess(true);
       } else {
         setIsSuccess(false);
@@ -61,6 +61,8 @@ const Contact = () => {
                 onSubmit={handleSubmit}
                 name="contact"
                 method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
                 className="space-y-4"
               >
                 {/* Honeypot Field */}
@@ -70,6 +72,9 @@ const Contact = () => {
                   value={formData['bot-field']}
                   onChange={handleChange}
                 />
+
+                {/* Netlify Form Hidden Data */}
+                <input type="hidden" name="form-name" value="contact" />
 
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-gray-200">
