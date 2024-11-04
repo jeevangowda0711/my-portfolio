@@ -5,7 +5,7 @@ import { Card, CardContent, Input, Textarea, Button } from "./ui-components";
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '', 'bot-field': '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,7 +20,6 @@ const Contact = () => {
 
     setIsSubmitting(true);
 
-    // Send form data to Netlify
     const formPayload = new FormData();
     for (const key in formData) {
       formPayload.append(key, formData[key]);
@@ -35,10 +34,10 @@ const Contact = () => {
 
       setIsSubmitting(false);
       setFormData({ name: '', email: '', message: '', 'bot-field': '' });
-      setSuccessMessage('Thank you for reaching out! Your message has been sent successfully.');
+      setIsSuccess(true);
     } catch {
       setIsSubmitting(false);
-      setSuccessMessage('There was an error sending your message. Please try again later.');
+      setIsSuccess(false);
     }
   };
 
@@ -119,8 +118,8 @@ const Contact = () => {
                   {isSubmitting ? <span>Sending...</span> : <span>Send Message</span>}
                 </Button>
               </form>
-              {successMessage && (
-                <p className="text-center text-neonGreen mt-4">{successMessage}</p>
+              {isSuccess && (
+                <p className="text-center text-neonGreen mt-4">Thank you for reaching out!</p>
               )}
             </CardContent>
           </Card>
