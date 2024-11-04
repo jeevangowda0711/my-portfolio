@@ -1,0 +1,64 @@
+// Experience and Projects Data
+const experiences = [
+  {
+    title: "Associate Product Manager",
+    company: "Klimb.io",
+    dates: "May 2022 - November 2022",
+    description: [
+      "Revamped the dashboard and settings interface, resulting in a 25% decrease in user inquiries about platform navigation; streamlined user engagement processes, which improved response time by 15% across support teams.",
+      "Executed daily monitoring of website performance metrics, analyzing error logs and crash reports, which improved response times to critical issues by 40%, contributing to a more stable recruitment management system.",
+      "Conducted a weekly review of development team tasks, optimizing workflow and reallocating resources to high-priority items; this resulted in a 15% increase in task completion rates across the board."
+    ],
+    link: "https://www.klimb.io"
+  },
+  {
+    title: "Associate Product Manager Intern",
+    company: "Klimb.io",
+    dates: "March 2022 - May 2022",
+    description: [
+      "Led effective daily check-ins with developers to assess ongoing tasks and roadblocks, fostering a collaborative environment that empowered the team to resolve issues quickly and improve project momentum.",
+      "Implemented structured communication protocols during daily calls, contributing to a cohesive team environment; established regular updates to ensure all development activities are clearly tracked and reported."
+    ],
+    link: "https://www.klimb.io"
+  },
+  {
+    title: "Celestial V Solutions",
+    company: "Klimb.io",
+    dates: "December 2021 - January 2022",
+    description: [
+      "Developed a big data visualization system, improving decision-making efficiency by 15%."
+    ],
+    link: "https://www.celestialv.com/"
+  },
+];
+
+const projects = [
+  {
+    title: "Visionary Mate",
+    description: "AI-Powered Accessibility Assistance & Multimodal Interaction Platform Platform",
+    details: "Enhanced accessibility and engagement by 40% through AI-powered navigation and media processing.",
+    badges: ["Python", "FastAPI", "HuggingFace", "Tailwind CSS"],
+    link: "https://github.com/jeevangowda0711/Visionary_MATE"
+  },
+  {
+    title: "Resume Analyzer Job Matcher",
+    description: "AI-Powered Accessibility Platform",
+    details: "Enhanced accessibility and engagement by 40% through AI-powered navigation and media processing.",
+    badges: ["Python", "FastAPI", "HuggingFace", "Tailwind CSS"],
+    link: "https://github.com/jeevangowda0711/resume-analyzer-job-matcher"
+  },
+  {
+    title: "Movie Rating Service",
+    description: "AI-Powered Accessibility Platform",
+    details: "Enhanced accessibility and engagement by 40% through AI-powered navigation and media processing.",
+    badges: ["Python", "FastAPI", "HuggingFace", "Tailwind CSS"],
+    link: "https://github.com/jeevangowda0711/Movie-Rating-Service"
+  },
+  {
+    title: "Movies Recommendation System",
+    description: "AI-Powered Accessibility Platform",
+    details: "Enhanced accessibility and engagement by 40% through AI-powered navigation and media processing.",
+    badges: ["Python", "FastAPI", "HuggingFace", "Tailwind CSS"],
+    link: "https://github.com/jeevangowda0711/MoviesRecommendation"
+  },
+];

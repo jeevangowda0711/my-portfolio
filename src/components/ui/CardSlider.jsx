@@ -37,7 +37,7 @@ const CardSlider = ({ items, type }) => {
         pagination={{ clickable: true }}
         loop={true}
         autoplay={{
-          delay: 2000,
+          delay: 5000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true
         }}
@@ -50,11 +50,11 @@ const CardSlider = ({ items, type }) => {
       >
         {items.map((item, index) => (
           <SwiperSlide key={index} className="pb-12">
-            <Card className="h-full transform transition-all duration-300 hover:scale-105 hover:shadow-xl bg-gray-800/50 border-gray-700">
-              <CardHeader>
+            <Card className="h-[400px] transform transition-all duration-300 hover:scale-105 hover:shadow-xl bg-gray-800/50 border-gray-700 flex flex-col">
+              <CardHeader className="flex-shrink-0">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-xl text-neonGreen">
-                    {isExperience ? item.title : item.title}
+                    {item.title}
                   </CardTitle>
                   {item.link && (
                     <a
@@ -68,16 +68,10 @@ const CardSlider = ({ items, type }) => {
                   )}
                 </div>
                 <CardDescription className="text-gray-400">
-                  {isExperience ? (
-                    <>
-                      {item.company} | {item.dates}
-                    </>
-                  ) : (
-                    item.description
-                  )}
+                  {isExperience ? `${item.company} | ${item.dates}` : item.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow overflow-y-auto">
                 {isExperience ? (
                   <ul className="list-disc list-inside space-y-2 text-gray-300">
                     {item.description.map((desc, idx) => (
@@ -86,8 +80,12 @@ const CardSlider = ({ items, type }) => {
                   </ul>
                 ) : (
                   <>
-                    <p className="text-gray-300 mb-4 text-sm">{item.details}</p>
-                    <div className="flex flex-wrap gap-2">
+                    <ul className="list-disc list-inside space-y-2 text-gray-300 mb-4">
+                      {item.details.map((detail, idx) => (
+                        <li key={idx} className="text-sm">{detail}</li>
+                      ))}
+                    </ul>
+                    <div className="flex flex-wrap gap-2 mt-auto">
                       {item.badges.map((badge, idx) => (
                         <Badge 
                           key={idx}

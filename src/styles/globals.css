@@ -10,6 +10,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --color-neonGreen: #39ff14;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,32 +29,139 @@ body {
 /* Custom Swiper Styles */
 @layer components {
   .swiper-button-next,
-.swiper-button-prev {
-  color: #50fa7b !important; /* Your neon green color */
-  width: 40px !important;
-  height: 40px !important;
-  margin: 0 10px !important;
+  .swiper-button-prev {
+    color: #50fa7b !important; /* Your neon green color */
+    width: 40px !important;
+    height: 40px !important;
+    margin: 0 10px !important;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 25px !important;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #50fa7b !important;
+  }
+
+  /* Add these new styles */
+  .swiper-slide {
+    height: auto !important;
+  }
+
+  .swiper-wrapper {
+    padding-bottom: 40px !important;
+  }
 }
 
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  font-size: 25px !important;
+.center-container {
+  max-width: 1200px; /* You can adjust this based on your preference */
+  margin: 0 auto; /* This will center the container horizontally */
+  padding: 0 1rem; /* Adds some padding on smaller screens */
 }
 
-.swiper-pagination-bullet {
-  background-color: rgba(255, 255, 255, 0.4) !important;
+/* Custom Styling for Skills Section */
+.skills-section {
+  text-align: center;
+  margin-top: 5rem;
+  padding: 0 1rem; /* Add padding to avoid edges on small screens */
 }
 
-.swiper-pagination-bullet-active {
-  background-color: #50fa7b !important;
+.skills-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
-/* Add these new styles */
-.swiper-slide {
-  height: auto !important;
+/* Update tabs-trigger to always have neon green text */
+.tabs-trigger {
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+  padding: 0.5rem 1rem;
+  color: var(--color-neonGreen);
+  transition: all 0.3s ease;
 }
 
-.swiper-wrapper {
-  padding-bottom: 40px !important;
+.highlighted-tab {
+  border: 2px solid #39ff14; /* Neon green color */
+  border-radius: 6px; /* Make the border rounded for a modern look */
+  padding: 0.5rem 1rem; /* Add some padding to make it look balanced */
+  transition: all 0.3s ease-in-out; /* Smooth transition for better UX */
 }
+
+.tabs-trigger-active {
+  background-color: rgba(80, 250, 123, 0.1); /* Lighter green to highlight */
+  color: var(--color-neonGreen);
+  border: 2px solid var(--color-neonGreen);
 }
+
+.tabs-trigger:hover,
+.tabs-trigger:focus {
+  background-color: rgba(80, 250, 123, 0.1);
+  color: var(--color-neonGreen);
+  border-color: var(--color-neonGreen);
+}
+
+/* Card Content Styling for Vertical Scroll */
+.card-content {
+  max-height: 200px; /* Define max height to control card size */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #50fa7b #2d3748;
+}
+
+.card-content::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.card-content::-webkit-scrollbar-track {
+  background: #2d3748; /* Scrollbar track */
+}
+
+.card-content::-webkit-scrollbar-thumb {
+  background-color: #50fa7b; /* Neon green scrollbar handle */
+  border-radius: 6px; /* Rounded edges for a modern look */
+  border: 3px solid #2d3748; /* Padding around handle */
+}
+
+/* Mobile-specific styles to prevent overlap */
+@media (max-width: 768px) {
+  .skills-section {
+    margin-top: 3rem;
+  }
+
+  .skills-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    align-items: center;
+    justify-items: center;
+  }
+
+  /* Center all sections properly */
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Section Level CSS for Alignment */
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
