@@ -20,24 +20,23 @@ const Contact = () => {
 
     setIsSubmitting(true);
 
-    const formPayload = new FormData();
-    for (const key in formData) {
-      formPayload.append(key, formData[key]);
-    }
-
     try {
-      await fetch('/', {
+      const response = await fetch('/api/submit-form', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formPayload).toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
 
-      setIsSubmitting(false);
-      setFormData({ name: '', email: '', message: '', 'bot-field': '' });
-      setIsSuccess(true);
+      if (response.ok) {
+        setFormData({ name: '', email: '', message: '', 'bot-field': '' });
+        setIsSuccess(true);
+      } else {
+        setIsSuccess(false);
+      }
     } catch {
-      setIsSubmitting(false);
       setIsSuccess(false);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -62,8 +61,6 @@ const Contact = () => {
                 onSubmit={handleSubmit}
                 name="contact"
                 method="POST"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
                 className="space-y-4"
               >
                 {/* Honeypot Field */}
@@ -73,9 +70,6 @@ const Contact = () => {
                   value={formData['bot-field']}
                   onChange={handleChange}
                 />
-
-                {/* Netlify Form Hidden Data */}
-                <input type="hidden" name="form-name" value="contact" />
 
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-gray-200">
